@@ -3,9 +3,9 @@
 #define _GNU_SOURCE
 #endif
 
-#include "common.h"
-#include "llama.h"
-#include "build-info.h"
+#include "../common.h"
+#include "../../llama.h"
+//#include "../../build-info.h"
 
 #include <cassert>
 #include <cinttypes>
@@ -92,7 +92,7 @@ int main(int argc, char ** argv) {
         params.n_ctx = 8;
     }
 
-    fprintf(stderr, "%s: build = %d (%s)\n", __func__, BUILD_NUMBER, BUILD_COMMIT);
+    // fprintf(stderr, "%s: build = %d (%s)\n", __func__, BUILD_NUMBER, BUILD_COMMIT);
 
     if (params.seed == LLAMA_DEFAULT_SEED) {
         params.seed = time(NULL);

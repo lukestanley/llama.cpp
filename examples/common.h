@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "llama.h"
+#include "../llama.h"
 
 #include <string>
 #include <vector>
@@ -48,7 +48,7 @@ struct gpt_params {
     float   mirostat_tau      = 5.00f; // target entropy
     float   mirostat_eta      = 0.10f; // learning rate
 
-    std::string model             = "models/7B/ggml-model.bin"; // model path
+    std::string model             = "models/orca-mini-3b.ggmlv3.q4_0.bin"; // model path
     std::string model_alias       = "unknown"; // model alias
     std::string prompt            = "";
     std::string path_prompt_cache = "";  // path to file for saving/loading prompt eval state

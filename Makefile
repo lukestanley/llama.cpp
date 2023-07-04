@@ -272,8 +272,9 @@ libllama.so: llama.o ggml.o $(OBJS)
 	$(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -vf *.o *.so main quantize quantize-stats perplexity embedding benchmark-matmult save-load-state server vdot train-text-from-scratch embd-input-test build-info.h
-
+	rm -vf *.o *.so quantize quantize-stats perplexity embedding benchmark-matmult save-load-state server vdot train-text-from-scratch embd-input-test build-info.h
+	rm -f *.o main.{html,wasm,js,data,worker.js}
+	rm -f common.o examples/common.o
 #
 # Examples
 #
@@ -283,6 +284,9 @@ main: examples/main/main.cpp                                  build-info.h ggml.
 	@echo
 	@echo '====  Run ./main -h for help.  ===='
 	@echo
+
+main.html: examples/main/main.cpp ggml.o llama.o examples/common.o $(OBJS)
+	$(CXX) $(CXXFLAGS) examples/main/main.cpp ggml.o llama.o examples/common.o -o main.html $(LDFLAGS)
 
 simple: examples/simple/simple.cpp                            build-info.h ggml.o llama.o common.o $(OBJS)
 	$(CXX) $(CXXFLAGS) $(filter-out %.h,$^) -o $@ $(LDFLAGS)
